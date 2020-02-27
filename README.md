@@ -6,7 +6,7 @@ Kelompok T16
    
 Soal Shift Modul 1
 
-### Soal 1
+## Soal 1
 
 Whits adalah seorang mahasiswa teknik informatika. Dia mendapatkan tugas praktikum untuk membuat laporan berdasarkan data yang ada pada file __“Sample-Superstore.tsv”__. Namun dia tidak dapat menyelesaikan tugas tersebut. Laporan yang diminta berupa : 
 
@@ -18,7 +18,7 @@ c. Tampilkan 10 produk (product name) yang memiliki keuntungan (profit) paling s
 
 *Gunakan Awk dan Command pendukung*
 
-### Soal 2
+## Soal 2
 
 Pada suatu siang, laptop Randolf dan Afairuzr dibajak oleh seseorang dan kehilangan data-data penting. Untuk mencegah kejadian yang sama terulang kembali mereka meminta bantuan kepada Whits karena dia adalah seorang yang punya banyak ide. Whits memikirkan sebuah ide namun dia meminta bantuan kalian kembali agar ide tersebut cepat diselesaikan. Idenya adalah kalian 
 
@@ -34,7 +34,7 @@ _HINT: enkripsi yang digunakan adalah caesar cipher._
 
 *Gunakan Bash Script*
 
-### Soal 3
+## Soal 3
 
 1 tahun telah berlalu sejak pencampakan hati Kusuma. Akankah sang pujaan hati kembali ke naungan Kusuma? Memang tiada maaf bagi Elen. Tapi apa daya hati yang sudah hancur, Kusuma masih terguncang akan sikap Elen. Melihat kesedihan Kusuma, kalian mencoba menghibur Kusuma dengan mengirimkan gambar kucing. 
 
