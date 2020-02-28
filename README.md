@@ -6,7 +6,7 @@ Kelompok T16
    
 Soal Shift Modul 1
 
-#### Soal 1
+### Soal 1
 
 Whits adalah seorang mahasiswa teknik informatika. Dia mendapatkan tugas praktikum untuk membuat laporan berdasarkan data yang ada pada file __“Sample-Superstore.tsv”__. Namun dia tidak dapat menyelesaikan tugas tersebut. Laporan yang diminta berupa : 
 
@@ -20,7 +20,7 @@ c. Tampilkan 10 produk (product name) yang memiliki keuntungan (profit) paling s
 
 **Pembahasan:**
 
-#### Soal 2
+### Soal 2
 
 Pada suatu siang, laptop Randolf dan Afairuzr dibajak oleh seseorang dan kehilangan data-data penting. Untuk mencegah kejadian yang sama terulang kembali mereka meminta bantuan kepada Whits karena dia adalah seorang yang punya banyak ide. Whits memikirkan sebuah ide namun dia meminta bantuan kalian kembali agar ide tersebut cepat diselesaikan. Idenya adalah kalian 
 
@@ -38,17 +38,49 @@ _HINT: enkripsi yang digunakan adalah caesar cipher._
 
 **Pembahasan:**
 
-```
+```bash
 #!/bin/bash
 
 password=$(cat /dev/urandom | tr -dc 'a-zA-z0-9' | fold -w 28 | head -n 1)
 namefile=$(echo $1 | tr -d 'a-zA-z')
 
 echo $password > $namefile.txt
-
 ```
 
-#### Soal 3
+__Penjelasan:__
+
+Pada soal 2, dijelaskan bahwa Whits membutuhkan ide, dan kami membantunya dengan cara membuat script bash untuk menyelesaikannya. Untuk membuat pasword random, dibutuhkan script seperti
+
+```bash
+password=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 28 | head -n 1)
+```
+
+- `cat /dev/urandom` digunakan untuk melakukan atau membuat sebuah file dengan input standar yang berisi output acak atau _random_
+
+- ` | ` pipe merupakan pemisah atau penghubung setelah suatu command telah selesai dikerjakan dan akn dilanjutkan ke command berikutnya
+
+- `tr -dc 'a-zA-Z0-9'` merupakan penerjemahan dari command `cat` sebelumnya, dimana `-dc 'a-zA-Z0-9'` akan melakukan output yang menerjemahkan dan menghapus semua karakter kecuali `a-zA-Z0-9`
+
+- `fold -w 28` disini digunakan untuk membuat __newline__ setelah sudah terdapat 28 karakter yang telah diinput, sehingga menghasilkan output `head -n 1` yang merupakan _line_ pertama dari pengacakan karakter.
+
+- setelah itu, hasil dari output akan disimpan dalam variabel `$password`
+
+```bash
+namefile=$(echo $1 | tr -d 'a-zA-z')
+```
+
+- `echo $1` akan mengambil atau menginputkan hasil dari argumen yang pertama, argumen sebelumnya
+
+- hasil dari `$1` akan difilter kembali dengan `tr -d 'a-zA-Z'` dimana hasil argumen sebeumnya akan menerjemahkan hasil output dan menyimpan semua karakter yang berupa huruf
+
+- hasil output akhir kemuadian akan disimpan dalam variable `$namefile`
+
+```bash
+echo $password > $namefile.txt
+```
+hasil akhirnya, dari varibale `$password` akan dipindahkan ke dalam variable `$namefile.txt` yang berekstensi `.txt` yang apabila kita memanggil atau membuka isi bash dari `$namefile.txt.txt` akan menampilkan password yang dibuat.
+
+### Soal 3
 
 1 tahun telah berlalu sejak pencampakan hati Kusuma. Akankah sang pujaan hati kembali ke naungan Kusuma? Memang tiada maaf bagi Elen. Tapi apa daya hati yang sudah hancur, Kusuma masih terguncang akan sikap Elen. Melihat kesedihan Kusuma, kalian mencoba menghibur Kusuma dengan mengirimkan gambar kucing. 
 
@@ -62,12 +94,11 @@ _Hint : Gunakan `wget.log` untuk membuat `location.log` yang isinya merupakan ha
 
 **Pembahasan:**
 
-```
+```bash
 #!/bin/bash
 
 for((i=1;i<29;i++))
 do
 wget -O pdkt_kusuma_$i https://loremflickr.com/320/240/cat --append-output wget.log >> wget.log
 done
-
 ```
