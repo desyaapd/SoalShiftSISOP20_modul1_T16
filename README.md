@@ -102,3 +102,16 @@ do
 wget -O pdkt_kusuma_$i https://loremflickr.com/320/240/cat --append-output wget.log >> wget.log
 done
 ```
+
+__Penjelasan:__
+
+`for((i=1;i<29;i++))` kondisi ini digunakan untuk menamai gambar atau melakukan proses _looping_ angka pada setiap file yang terunduh dari link yang diberikan Kusuma.
+
+```bash
+wget -O pdkt_kusuma_$i https://loremflickr.com/320/240/cat --append-output wget.log >> wget.log
+```
+- gambar akan terdownload dari link `https://loremflickr.com/320/240/cat` dengan menggunakan perintah `wget`
+
+- `-O pdkt_kusuma_$i` akan menampilan output dari file yang telah terunduh dengan menamainya pdkt_kusuma dan `$i` merupakan angka yang akan mengurutkan filenya berdasarkan urutan unduhan.
+
+- kemudian perintah pengunduhan atau _log messages_ akan dipindahkan atau disimpan kedalam `wget.log`
