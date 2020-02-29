@@ -20,18 +20,62 @@ c. Tampilkan 10 produk (product name) yang memiliki keuntungan (profit) paling s
 
 **Pembahasan:**
 
+untuk mendapatkan file data yang dibutuhkan, maka step pertama yang dilakukan adalah mengunduh link data dengan menggunakan `wget Sample-Superstore.tsv` pada program.
+
+```bash
 #!/bin/bash
 
 echo "Region profit terkecil: "
 awk -F'\t' 'FNR > 1{SUM[$13] +=$21} END{for (j in SUM) print j, SUM[j]}' Sample-Superstore.tsv | sort -gk2 | awk 'FNR < 2{print$1}'
+```
 
+- `echo "Region profit terkecil: "` akan menampilkan hasil output dari command awk
+
+- `-F'\t'` merupakan _field seperator_ pada file yang akan ditambilkan, pemisah `\t` merupakan tab antar file yang ditampilkan
+
+- `FNR > 1` untuk menyimpan jumlah record dalam file yang dituju dan dibaca mulai dari kolom kedua karena pada kolom pertama berisi header
+
+- `{SUM[$13] +=$21}` merupakan kolom yang akan diberi perintah, dimana`$13` merupakan kolom region dan `$21` merupakan kolom profit
+
+- `END{for (j in SUM) print j, SUM[j]` akan menampilkan seluruh profit dari masing masing region yang ada, kemudian akan dilakukan proses penyaringan dengan `sort -gk2`
+
+- gunanya `k2` atau merupakan kolom 2 yaitu jumlah profit yang sesuai dengan `-g` atau generic number, kemudian awk akan menampilkan hasil akhir atau urutan profit terkecil paling sedikit berdasarkan region pada awal pemanggilan dan menampilkan `{print$1}`
+
+```bash
 #!bin/bash
 
 awk -F "\t" 'NR>1 {if( $13=="Central" ) { a[$11]+=$21 }} END { for(i in a) print i","a[i] | "sort -t ',' -g -k2"}' Sample-Superstore.tsv | head -n 2
+```
 
+- penggunaan `-F "\t"` sama seperti pada jawaban soal sebelumnya dimana ia merupakan _field seperator_ menggunakan pemisah tab.
+
+- `NR > 1` untuk menyimpan jumlah record dan dibaca mulai dari kolom kedua karena pada kolom pertama berisi header
+
+- `( $13=="Central" )` merupakan hasil dari soal sebelumnya dimana profit terkecil terdapat pada region tersebut, sehingga untuk pengeksekusian akan berdasarkan region tersebut.
+
+- kolom state dan profit `{ a[$11]+=$21 }` akan disimpan dalam suatu variabel `$11` dan `$21`
+
+- kemudian hasil dari perintah akan dilakukan penyaringan dengan `"sort -t ',' -g -k2"` yang akan dilihat berdasarkan kolom jumlah profit serta akan ditampilkan menggunakan pembatas atau pemisah `-t ','`
+
+- dimana hasil outputnya akan menampilkan `head -n 2` yang merupakan 2 baris pertama dari hasil eksekusi
+
+```bash
 #!bin/bash
 
 awk -F "\t" 'NR>1 { if( ( $11=="Illinois" || $11=="Texas" ) && $13=="Central" ) { a[$17]+=$21; }} END { for(i in a) print i"="a[i] | "sort -t '=' -g -k2" }' Sample-Superstore.tsv | head -n 10
+```
+- penggunaan `-F "\t"` sama seperti pada jawaban soal sebelumnya dimana ia merupakan _field seperator_ menggunakan pemisah tab.
+
+- `NR > 1` untuk menyimpan jumlah record dan dibaca mulai dari kolom kedua karena pada kolom pertama berisi header
+
+- `( $11=="Illinois" || $11=="Texas" ) && $13=="Central" )` merupakan hasil dari soal sebelumnya dimana profit terkecil terdapat pada region tersebut,  serta 2 state sehingga untuk pengeksekusian akan berdasarkan region dan state tersebut.
+
+- kolom product dan profit `{ a[$17]+=$21 }` akan disimpan dalam suatu variabel `$17` dan `$21`
+
+- kemudian hasil dari perintah akan dilakukan penyaringan dengan `"sort -t '=' -g -k2"` yang akan dilihat berdasarkan kolom jumlah profit serta akan ditampilkan menggunakan pembatas atau pemisah `-t '='`
+
+- dimana hasil outputnya akan menampilkan `head -n 10` yang merupakan 10 baris pertama dari hasil eksekusi
+
 
 
 
@@ -131,3 +175,11 @@ wget -O pdkt_kusuma_$i https://loremflickr.com/320/240/cat --append-output wget.
 - `-O pdkt_kusuma_$i` akan menampilan output dari file yang telah terunduh dengan menamainya pdkt_kusuma dan `$i` merupakan angka yang akan mengurutkan filenya berdasarkan urutan unduhan.
 
 - kemudian perintah pengunduhan atau _log messages_ akan dipindahkan atau disimpan kedalam `wget.log`
+
+__KENDALA YANG DIALAMI__
+
+   - link data pada soal pertama hanya dapat diunduh di salah satu laptop praktikan, sehingga tidak keduanya dapat berlatih atau mengerti isi soal sepenuhnya
+
+   - karena kurangnya pemahaman dalam soal karena soal yang diberikan jauh lebih sulit dibandingkan soal pada saat asistensi
+
+   - dalam pengisian readme terdapat kekacauan serta kurangnya koordinasi antar pengerjaan, sehingga file edit milik praktikan tidak dapat terbaca dan hanya dapat diedit oleh 1 orang.
